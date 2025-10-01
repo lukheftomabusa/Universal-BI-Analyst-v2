@@ -143,6 +143,10 @@ market_strategy_task = Task(
 )
 
 # Task 5: Create the Final Client-Ready Report
+# In bi_crew.py
+
+# In bi_crew.py
+
 final_report_task = Task(
     description=(
         "This is the final and most important step. Synthesize all the information from the previous tasks (Project Plan, Data Cleaning Summary, Quantitative Analysis, and Market Context) into a single, cohesive client-facing report. "
@@ -151,9 +155,12 @@ final_report_task = Task(
         "### Key Insights & Visualizations\nA section detailing the main discoveries. For each insight, first write the textual explanation, then embed the chart data using the required format: [CHART_DATA]...[END_CHART_DATA]\n\n"
         "### Actionable Recommendations\nA numbered list of clear, strategic recommendations that the client can act upon.\n\n"
         "### Appendix: Data & Methodology\nA brief summary of the data cleaning process and the analytical methods used.\n\n"
-        "Ensure all date formats in tables are 'YYYY-MM-DD' text strings."
+        "**CRITICAL FORMATTING RULE: When you create any markdown tables in your report, you MUST ensure that all date-related columns (like a column named 'DATE' or 'Year') contain only text strings. For example, a year should be '2023', not the number 2023. A full date must be a string like '2023-04-15'. This is to prevent display errors.**"
     ),
-    expected_output="A comprehensive, beautifully formatted markdown report ready to be presented to a business executive.",
+    expected_output=(
+        "A comprehensive, beautifully formatted markdown report ready to be presented to a business executive. "
+        "All tables within the report must have their date-like columns formatted as text strings."
+    ),
     agent=reporting_specialist,
     output_file='final_client_report.md',
     context=[requirements_task, data_engineering_task, quantitative_analysis_task, market_strategy_task]
